@@ -21,7 +21,7 @@ function setup() {
 
   textSize(20); 
 
-  var balloonPosition=database.ref('balloon/height');
+  var balloonPosition=database.ref('balloon/position');
   balloonPosition.on("value",readPosition,showError);
 }
 
@@ -59,15 +59,15 @@ function draw() {
   text("**Use arrow keys to move Hot Air Balloon!",40,40);
 }
 function updatePosition(x,y){
-  database.ref('balloon/height').set({
-    'x': height.x + x,
-    'y': height.y + y
+  database.ref('balloon/position').set({
+    'x': position.x + x,
+    'y': position.y + y
   })
 }
 function readPosition(data){
-  height = data.val();
-  balloon.x = height.x;
-  balloon.y = height.y;
+  position = data.val();
+  balloon.x = position.x;
+  balloon.y = position.y;
 }
 function showError(){
   console.log("Error in writing to the");
